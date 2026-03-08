@@ -11,10 +11,9 @@ import java.util.Locale;
 
 @SpringBootApplication
 public class LicensingApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(LicensingApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(LicensingApplication.class, args);
+    }
 
     @Bean
     public LocaleResolver localeResolver() {
