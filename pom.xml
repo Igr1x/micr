@@ -17,8 +17,12 @@
 
     <properties>
         <java.version>17</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <docker.image.prefix>ostock</docker.image.prefix>
         <spring-cloud.version>2025.1.0</spring-cloud.version>
+        <spring-cloud-config.version></spring-cloud-config.version>
     </properties>
 
     <dependencyManagement>
@@ -42,6 +46,8 @@
     <modules>
         <module>configserver</module>
         <module>licensing</module>
+        <module>eurekaserver</module>
+        <module>organization-service</module>
     </modules>
     <build>
         <pluginManagement>

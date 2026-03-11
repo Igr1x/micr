@@ -5,9 +5,32 @@ spring:
   application:
     name: config-server
   profiles:
-    active: native # профиль связанный с файловой системой
+    active: native
+
   cloud:
     config:
       server:
         native:
           search-locations: classpath:/config
+
+        git:
+          uri: git@github.com:Igr1x/config.git
+          sarchPaths: licensingservice
+          username: username
+          password: personal access token
+
+        vault:
+          backend: licensing-service
+          kv-version: 2
+          profile-separator: /
+          authentication: TOKEN
+          token: myroot
+
+encrypt:
+  key: IMSYMMETRIC
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
