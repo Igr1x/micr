@@ -1,16 +1,21 @@
 package ru.varnavskii.licensing.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.varnavskii.licensing.model.License;
 import ru.varnavskii.licensing.service.LicenseService;
+import ru.varnavskii.licensing.utils.UserContextHolder;
 
+import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeoutException;
 
 @RestController
 @RequestMapping(value = "v1/organization/{organizationId}/license")
 @RequiredArgsConstructor
+@Slf4j
 public class LicenseController {
 
     private final LicenseService licenseService;
@@ -56,5 +61,11 @@ public class LicenseController {
                                           @PathVariable("clientType") String clientType) {
 
         return licenseService.getLicense(licenseId, organizationId, clientType);
+    }
+
+    @GetMapping
+    public List<License> getByOrgId(@PathVariable("organizationId") String id) throws TimeoutException {
+        log.info("LicenseController correlation id {}", UserContextHolder.getContext().getCorrelationId());
+        return licenseService.getByOrganizationId(id);
     }
 }

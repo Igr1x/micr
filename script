@@ -1,0 +1,11 @@
+#!/bin/bash
+
+URL="http://localhost:8080/v1/organization/1/license"
+COUNT=0
+
+while true; do
+    COUNT=$((COUNT+1))
+    RESPONSE=$(curl -s "$URL")
+    echo "Attempt #$COUNT: $RESPONSE"
+    sleep 1
+done
